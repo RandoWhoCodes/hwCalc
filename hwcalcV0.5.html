@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>HW Calc V1.0</title> <!-- * means may not be up to date-->
+
+		<style>
+			textarea {
+				border-radius: 5px;
+			}
+			button {
+				border-radius: 5px;
+			}
+		</style>
+	</head>
+	<body style="text-align: center; padding: 50px 50px;">
+		<p id="title" style="font-size: 30px;"><b>HW Calc V1.0</b></p>
+		<textarea id="currPoints" placeholder="Enter current points here..."></textarea>
+		<textarea id="maxpPoints" placeholder="Enter max points you could have here..."></textarea>
+		<textarea id="asgnPoints" placeholder="Enter how many points this is worth..."></textarea>
+		<textarea id="trgtPoints" placeholder="Enter target points here..."></textarea>
+
+		<br/>
+		
+		<button id="calc" onClick="calcGrade()">Calculate</button>
+
+		<br/>
+		<br/>
+
+		<div style="display: inline-flex;">
+			<p id="otptGrd" style="padding: 10px 10px;">N/A</p>
+			<p id="otptLtr" style="padding: 10px 10px;">N/A</p>
+		</div>
+
+		<script>
+			function calcGrade() {
+				var currPoints = Number(document.getElementById("currPoints").value);
+				var maxpPoints = Number(document.getElementById("maxpPoints").value)
+				var asgnPoints = Number(document.getElementById("asgnPoints").value);
+				var trgtPoints = Number(document.getElementById("trgtPoints").value);
+
+				var grdPercent;
+				var ltrPercent;
+
+				grdPercent = ((currPoints + trgtPoints) / (maxpPoints + asgnPoints)) * 100;
+
+				if(grdPercent > 96) {
+					if(grdPercent > 100) {
+						ltrPercent = "A++";
+					} else {
+						ltrPercent = "A+";
+					}
+				} else if(grdPercent > 92) {
+					ltrPercent = "A";
+				} else if(grdPercent > 89) {
+					ltrPercent = "A-";
+				} else if(grdPercent > 86) {
+					ltrPercend = "B+";
+				} else if(grdPercent > 82) {
+					ltrPercent = "B";
+				} else if(grdPercent > 79) {
+					ltrPercent = "B-";
+				} else if(grdPercent > 76) {
+					ltrPercent = "C+";
+				} else if(grdPercent > 72) {
+					ltrPercent = "C";
+				} else if(grdPercent > 69) {
+					ltrPercent = "C-";
+				} else if(grdPercent > 56) {
+					ltrPercent = "D+";
+				} else if(grdPercent > 52) {
+					ltrPercent = "D";
+				} else if(grdPercent > 49) {
+					ltrPercent = "D-";
+				} else {
+					ltrPercent = "NP / F";
+				}
+
+				document.getElementById("otptGrd").innerHTML = grdPercent + "%";
+				document.getElementById("otptLtr").innerHTML = ltrPercent;
+			}
+		</script>
+	</body>
+</html>
